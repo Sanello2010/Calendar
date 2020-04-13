@@ -33,8 +33,14 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'rest_framework',
     'MainAPP',
+    'allauth',
+    'allauth.account',
+    'rest_framework.authtoken',
+    'rest_auth',
+    'rest_auth.registration',
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -85,6 +91,11 @@ DATABASES = {
         "PORT": "5432",
     }
 }
+
+# AUTHENTICATION_BACKENDS = (
+#     'django.contrib.auth.backends.ModelBackend',
+#     'allauth.account.auth_backends.AuthenticationBackend'
+# )
 
 
 # Password validation
@@ -148,4 +159,23 @@ LOGGING = {
             #'gunicorn.error': {
             #    }
             }
+}
+
+REST_SESSION_LOGIN = True
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+SITE_ID = 1
+ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
+
+SWAGGER_SETTINGS = {
+    'LOGIN_URL': 'login',
+    'LOGOUT_URL': 'logout',
 }
