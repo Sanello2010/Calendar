@@ -31,13 +31,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'MainAPP.apps.MainappConfig',
+
     'rest_framework',
-    'MainAPP',
     'allauth',
     'allauth.account',
     'rest_framework.authtoken',
     'rest_auth',
     'rest_auth.registration',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.sites',
@@ -135,6 +137,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = "./static/"
 
 # Logging
 LOGGING = {

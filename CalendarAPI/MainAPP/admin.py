@@ -1,3 +1,6 @@
 from django.contrib import admin
+from MainAPP.models import Event, RemindTime
 
-# Register your models here.
+
+admin.site.register(Event)
+admin.site.register(RemindTime)
