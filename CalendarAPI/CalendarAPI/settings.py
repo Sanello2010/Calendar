@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_auth',
     'rest_auth.registration',
+    'djoser',
+    'django_filters',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -143,7 +145,7 @@ STATIC_ROOT = "./static/"
 LOGGING = {
         'version': 1,
         'handlers': {
-            'file':{
+            'file': {
                 'level': "INFO",
                 'class': 'logging.FileHandler',
                 'filename': 'Logs/DJLog.log',
@@ -154,7 +156,7 @@ LOGGING = {
                 },
             },
         'loggers': {
-            'django':{
+            'django': {
                 'handlers': ['file', 'console'],
                 'level': 'INFO',
                 'propogate': True,
@@ -172,10 +174,18 @@ ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_EMAIL_VERIFICATION = 'optional'
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
-    )
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        # 'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.TokenAuthentication',
+        "rest_framework.authentication.TokenAuthentication",
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+    "DEFAULT_FILTER_BACKENDS": (
+        "django_filters.rest_framework.DjangoFilterBackend"
+    ),
+}
+DJOSER = {
+    "PASSWORD_RESET_CONFIRM_URL": "#password" ##### TODO Остановился здесь
 }
 
 SWAGGER_SETTINGS = {
